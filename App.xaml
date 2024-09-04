@@ -1,0 +1,17 @@
+﻿<Application x:Class="Code_editor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Code_editor"
+             StartupUri="Views/MainWindow.xaml">
+
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Use the Black skin by default -->
+                <ResourceDictionary Source="dark.xaml"/>
+                <ResourceDictionary Source="light.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
