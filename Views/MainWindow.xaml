@@ -5,17 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Code_editor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"  Style="{DynamicResource WindowStyle}">
+        Title="MainWindow" Height="550" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Style="{DynamicResource WindowStyle}">
+    <Window.CommandBindings>
+
+    </Window.CommandBindings>
+
     <Grid>
-        <TextBox x:Name="EditorBox" HorizontalAlignment="Left" Margin="264,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Height="237"     VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
-        <TextBox x:Name="LogBox" HorizontalAlignment="Left" Margin="167,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="633" Height="69" TextChanged="LogBox_TextChanged" />
-        <ComboBox x:Name="DropBoxLanguage" HorizontalAlignment="Left" Margin="149,24,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.384,1.394" Height="27" SelectionChanged="DropBoxLanguage_SelectionChanged"/>
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="693,265,0,0" VerticalAlignment="Top" Width="79" Click="SubmitButton_Click" Style="{DynamicResource ButtonStyle}"/>
-        <Button x:Name="RunAndTests" Content="Run and Tests" HorizontalAlignment="Left" Margin="464,265,0,0" VerticalAlignment="Top" Click="RunAndTests_Click" Style="{DynamicResource ButtonStyle}"/>
-        <ComboBox x:Name="styleBox" HorizontalAlignment="Left" Margin="19,24,0,0" VerticalAlignment="Top" Width="64" Height="27"/>
-        <Label x:Name="Thems" Content="Теми інтерфейсу" HorizontalAlignment="Left" Margin="0,-2,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Programming_language" Content="Мови програмування" HorizontalAlignment="Left" Margin="116,0,0,0" VerticalAlignment="Top" />
+        <StackPanel Background="#eee" Height="40" VerticalAlignment="Top" MouseLeftButtonDown="Navbar_MouseLeftButtonDown" Orientation="Horizontal">
+            <StackPanel Width="900" Orientation="Horizontal">
+                <Label Margin="20,0,0,0" VerticalAlignment="Center">Hack</Label>
 
-
+                <Label VerticalAlignment="Center">Compile</Label>
+            </StackPanel>
+            <StackPanel Name="Minimize" Width="50" Height="40" Background="LightGray" MouseEnter="Minimize_MouseEnter" MouseLeave="Minimize_MouseLeave" HorizontalAlignment="Right" MouseDown="Minimize_MouseDown">
+                <Label Name="MinimizeLabel" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">_</Label>
+            </StackPanel>
+            <StackPanel Name="Close" Background="#FFC75050" Width="50" Height="40" MouseEnter="Close_MouseEnter" MouseLeave="Close_MouseLeave" MouseDown="Close_MouseDown">
+                <Label Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">X</Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="36,0,0,0" VerticalAlignment="Center">
+            <TextBlock x:Name="Status" Padding="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel  Height="30" Background="Gray" VerticalAlignment="Top" Margin="0,40,0,0" Orientation="Horizontal">
+            <Menu Height="18" Margin="18,0,0,0" Background="Gray" Foreground="White">
+                <MenuItem Header="Compile (Ctrl+F9)" FontSize="12" Foreground="White" Command="SelectAll"/>
+                <MenuItem Header="Run (Ctrl+F10)" FontSize="12" Foreground="White" Command="Select"/>
+                <MenuItem Header="About" FontSize="12" Click="MenuItem_Click"/>
+            </Menu>
+        </StackPanel>
+        <TextBox x:Name="EditorBox" HorizontalAlignment="Left" Margin="388,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Height="237"     VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
+        <TextBox x:Name="LogBox" HorizontalAlignment="Left" Margin="340,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="632" Height="69" TextChanged="LogBox_TextChanged" />
+        <ComboBox x:Name="DropBoxLanguage" HorizontalAlignment="Left" Margin="258,135,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.384,1.394" Height="27" SelectionChanged="DropBoxLanguage_SelectionChanged"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="845,390,0,0" VerticalAlignment="Top" Width="79" Click="SubmitButton_Click" Style="{DynamicResource ButtonStyle}"/>
+        <Button x:Name="RunAndTests" Content="Run and Tests" HorizontalAlignment="Left" Margin="388,383,0,0" VerticalAlignment="Top" Click="RunAndTests_Click" Style="{DynamicResource ButtonStyle}"/>
+        <ComboBox x:Name="styleBox" HorizontalAlignment="Left" Margin="19,502,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
+        <Label x:Name="Thems" Content="Теми інтерфейсу" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Programming_language" Content="Мови програмування" HorizontalAlignment="Left" Margin="225,98,0,0" VerticalAlignment="Top" />
+        <Label x:Name="label2" Foreground="Black" Content="Status:" RenderTransformOrigin="0.5,0.5" Margin="19,90,890,434" />
     </Grid>
 </Window>

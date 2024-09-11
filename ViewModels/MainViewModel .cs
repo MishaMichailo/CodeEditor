@@ -1,21 +1,25 @@
-﻿using System.Windows;
+﻿using Code_editor.Models;
 
 namespace Code_editor.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private string _code;
-        public string Code
+        private RequestBody requestBody;
+
+        public MainViewModel()
         {
-            get => _code;
+         //   requestBody = new RequestBody();
+        }
+
+        public string Language
+        {
+            get => requestBody.lang;
             set
             {
-                _code = value;
-                OnPropertyChanged();
+                requestBody.lang = value;
+                OnPropertyChanged(nameof(Language));
             }
         }
-        
 
-       
     }
 }
