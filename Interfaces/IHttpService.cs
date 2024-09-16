@@ -4,6 +4,7 @@ namespace Code_editor.Interfaces
 {
     public interface IHttpService
     {
-        Task<RequestBody> SendCodeAsync(string language, string sourceCode, int memoryLimit, int timeLimit);
+        Task<ResponseBody> SendCodeAsync(string language, string sourceCode, int memoryLimit, int timeLimit);
+      //  Task<string> PollCompilationStatus(string statusUpdateUrl);
     }
 }
