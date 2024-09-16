@@ -1,47 +1,42 @@
 ﻿<Window x:Class="Code_editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Code_editor"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Style="{DynamicResource WindowStyle}">
-    <Window.CommandBindings>
-
-    </Window.CommandBindings>
+        Title="CodeCompiler" Height="550" Width="1000" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundColorBrush}">
 
     <Grid>
-        <StackPanel Background="#eee" Height="40" VerticalAlignment="Top" MouseLeftButtonDown="Navbar_MouseLeftButtonDown" Orientation="Horizontal">
+        <StackPanel Background="{DynamicResource BackgroundColorBrush}" Height="40" VerticalAlignment="Top" MouseLeftButtonDown="Navbar_MouseLeftButtonDown" Orientation="Horizontal">
             <StackPanel Width="900" Orientation="Horizontal">
-                <Label Margin="20,0,0,0" VerticalAlignment="Center">Hack</Label>
+                <Label Margin="20,0,0,0" VerticalAlignment="Center">Code</Label>
+                <Label VerticalAlignment="Center">Editor</Label>
+            </StackPanel>
+            <StackPanel Name="Minimize" Width="50" Height="40" Background="{DynamicResource ButtonBackgroundColorBrush}" MouseEnter="Minimize_MouseEnter" MouseLeave="Minimize_MouseLeave" HorizontalAlignment="Right" MouseDown="Minimize_MouseDown">
+                <Label Name="MinimizeLabel" Foreground="{DynamicResource ForegroundColorBrush}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">_</Label>
+            </StackPanel>
+            <StackPanel Name="Close" Background="{DynamicResource ButtonBackgroundColorBrush}" Width="50" Height="40" MouseEnter="Close_MouseEnter" MouseLeave="Close_MouseLeave" MouseDown="Close_MouseDown">
+                <Label Foreground="{DynamicResource ForegroundColorBrush}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">X</Label>
+            </StackPanel>
+        </StackPanel>
 
-                <Label VerticalAlignment="Center">Compile</Label>
-            </StackPanel>
-            <StackPanel Name="Minimize" Width="50" Height="40" Background="LightGray" MouseEnter="Minimize_MouseEnter" MouseLeave="Minimize_MouseLeave" HorizontalAlignment="Right" MouseDown="Minimize_MouseDown">
-                <Label Name="MinimizeLabel" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">_</Label>
-            </StackPanel>
-            <StackPanel Name="Close" Background="#FFC75050" Width="50" Height="40" MouseEnter="Close_MouseEnter" MouseLeave="Close_MouseLeave" MouseDown="Close_MouseDown">
-                <Label Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">X</Label>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="36,0,0,0" VerticalAlignment="Center">
-            <TextBlock x:Name="Status" Padding="10,0,0,0" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel  Height="30" Background="Gray" VerticalAlignment="Top" Margin="0,40,0,0" Orientation="Horizontal">
-            <Menu Height="18" Margin="18,0,0,0" Background="Gray" Foreground="White">
-                <MenuItem Header="Compile (Ctrl+F9)" FontSize="12" Foreground="White" Command="SelectAll"/>
-                <MenuItem Header="Run (Ctrl+F10)" FontSize="12" Foreground="White" Command="Select"/>
-                <MenuItem Header="About" FontSize="12" Click="MenuItem_Click"/>
-            </Menu>
-        </StackPanel>
-        <TextBox x:Name="EditorBox" HorizontalAlignment="Left" Margin="388,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="536" Height="237"     VerticalScrollBarVisibility="Auto" TextChanged="EditorBox_TextChanged" />
-        <TextBox x:Name="LogBox" HorizontalAlignment="Left" Margin="340,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="632" Height="69" TextChanged="LogBox_TextChanged" />
-        <ComboBox x:Name="DropBoxLanguage" HorizontalAlignment="Left" Margin="258,135,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.384,1.394" Height="27" SelectionChanged="DropBoxLanguage_SelectionChanged"/>
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="845,390,0,0" VerticalAlignment="Top" Width="79" Click="SubmitButton_Click" Style="{DynamicResource ButtonStyle}"/>
-        <Button x:Name="RunAndTests" Content="Run and Tests" HorizontalAlignment="Left" Margin="388,383,0,0" VerticalAlignment="Top" Click="RunAndTests_Click" Style="{DynamicResource ButtonStyle}"/>
-        <ComboBox x:Name="styleBox" HorizontalAlignment="Left" Margin="19,502,0,0" VerticalAlignment="Top" Width="64" Height="26"/>
-        <Label x:Name="Thems" Content="Теми інтерфейсу" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Programming_language" Content="Мови програмування" HorizontalAlignment="Left" Margin="225,98,0,0" VerticalAlignment="Top" />
-        <Label x:Name="label2" Foreground="Black" Content="Status:" RenderTransformOrigin="0.5,0.5" Margin="19,90,890,434" />
+        <!-- Основний вміст -->
+
+        <Label Content="Оберіть мову програмування" HorizontalAlignment="Left" Margin="10,61,0,463" Width="162" Foreground="{DynamicResource ForegroundColorBrush}"/>
+        <ComboBox ItemsSource="{Binding LanguagesList}" SelectedItem="{Binding SelectedLanguage}" Width="150" Height="30" Margin="22,95,828,425" />
+
+        <Label Content="Тема програми" HorizontalAlignment="Left" Margin="232,61,0,463" Width="98" Foreground="{DynamicResource ForegroundColorBrush}"/>
+        <ComboBox ItemsSource="{Binding ThemesList}" SelectedItem="{Binding SelectedTheme}" Width="150" Height="30" Margin="201,95,649,425" />
+
+        <Label Content="Compile Status" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="244,383,0,0" Foreground="{DynamicResource ForegroundColorBrush}"/>
+        <TextBox Text="{Binding CompileStatus}" Width="300" Height="100" VerticalAlignment="Top" Margin="201,435,499,0" IsReadOnly="True" TextWrapping="Wrap" />
+
+        <!-- Поле для введення коду -->
+        <TextBox Text="{Binding EditorText}" Width="600" Margin="373,45,10,203" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" AcceptsReturn="True" TextWrapping="Wrap" Background="{DynamicResource BackgroundColorBrush}" Foreground="{DynamicResource ForegroundColorBrush}" />
+
+        <!-- Кнопка для надсилання коду -->
+        <Button Content="Submit" Command="{Binding SubmitCommand}" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="864,350,0,0" Background="{DynamicResource ButtonBackgroundColorBrush}" Foreground="{DynamicResource ForegroundColorBrush}"/>
+
+        <!-- Поле для виведення результату -->
+        <Label Content="Output Result" Margin="739,391,128,128" Foreground="{DynamicResource ForegroundColorBrush}" />
+        <TextBox Text="{Binding OutputResult}" Width="300" Height="100" Margin="664,435,36,15" IsReadOnly="True" Background="{DynamicResource BackgroundColorBrush}" Foreground="{DynamicResource ForegroundColorBrush}" />
     </Grid>
 </Window>

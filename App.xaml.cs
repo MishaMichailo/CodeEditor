@@ -18,7 +18,6 @@ namespace Code_editor
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-
                     ConfigureServices(services);
                 })
                 .Build();
