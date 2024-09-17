@@ -10,7 +10,7 @@ namespace Code_editor.Services
 {
     public class HttpService : IHttpService
     {
-        private const string ApiKey = "ae47971fa534bee4a4d084ce7b4c0c19992c8ea2";
+        private const string ApiKey = "Your API Key";
         private readonly HttpClient _httpClient;
         private readonly ILogger<HttpService> _logger; 
 
