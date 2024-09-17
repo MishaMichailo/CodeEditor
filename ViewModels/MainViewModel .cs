@@ -97,6 +97,8 @@ namespace Code_editor.ViewModels
 
             LanguagesList = new ObservableCollection<string>(new LanguagesDictionary().GetLanguagesList());
             ThemesList = new ObservableCollection<string>(new StylesList().GetStyleList());
+
+            SelectedTheme = "light";
         }
 
         private async Task SubmitCodeAsync()
