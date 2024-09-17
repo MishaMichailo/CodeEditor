@@ -19,12 +19,48 @@
         </StackPanel>
 
         <!-- Основний вміст -->
+        <!-- Memory Limit Input -->
+        <TextBlock Text="Memory Limit (MB):" 
+           HorizontalAlignment="Left" 
+           VerticalAlignment="Top" 
+           Margin="23,229,0,0"  
+           Foreground="{DynamicResource ForegroundColorBrush}" />
 
-        <Label Content="Оберіть мову програмування" HorizontalAlignment="Left" Margin="10,61,0,463" Width="162" Foreground="{DynamicResource ForegroundColorBrush}"/>
+        <TextBox x:Name="MemoryLimit" 
+         Text="{Binding MemoryLimit}" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Top" 
+         Margin="22,250,0,0" 
+         Width="100" 
+         IsReadOnly="True" 
+         Background="{DynamicResource BackgroundColorBrush}" 
+         Foreground="{DynamicResource ForegroundColorBrush}" 
+         BorderBrush="{DynamicResource BorderBrushColor}" 
+         Padding="8" />
+
+        <!-- Time Limit Input -->
+        <TextBlock Text="Time Limit (sec):" 
+           HorizontalAlignment="Left" 
+           VerticalAlignment="Top" 
+           Margin="248,229,0,0"  
+           Foreground="{DynamicResource ForegroundColorBrush}" />
+
+        <TextBox x:Name="TimeLimit" 
+         Text="{Binding TimeLimit}" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Top" 
+         Margin="241,250,0,0" 
+         Width="100" 
+         IsReadOnly="True" 
+         Background="{DynamicResource BackgroundColorBrush}" 
+         Foreground="{DynamicResource ForegroundColorBrush}" 
+         BorderBrush="{DynamicResource BorderBrushColor}" 
+         Padding="8" />
+        <Label Content="Choose programmin language" HorizontalAlignment="Left" Margin="4,61,0,463" Width="186" Foreground="{DynamicResource ForegroundColorBrush}"/>
         <ComboBox ItemsSource="{Binding LanguagesList}" SelectedItem="{Binding SelectedLanguage}" Width="150" Height="30" Margin="22,95,828,425" />
 
-        <Label Content="Тема програми" HorizontalAlignment="Left" Margin="232,61,0,463" Width="98" Foreground="{DynamicResource ForegroundColorBrush}"/>
-        <ComboBox ItemsSource="{Binding ThemesList}" SelectedItem="{Binding SelectedTheme}" Width="150" Height="30" Margin="201,95,649,425" />
+        <Label Content="Themes" HorizontalAlignment="Left" Margin="268,61,0,463" Width="98" Foreground="{DynamicResource ForegroundColorBrush}"/>
+        <ComboBox ItemsSource="{Binding ThemesList}" SelectedItem="{Binding SelectedTheme}" Width="150" Height="30" Margin="216,95,634,425" />
 
         <Label Content="Compile Status" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="244,383,0,0" Foreground="{DynamicResource ForegroundColorBrush}"/>
         <TextBox Text="{Binding CompileStatus}" Width="300" Height="100" VerticalAlignment="Top" Margin="201,435,499,0" IsReadOnly="True" TextWrapping="Wrap" />

@@ -84,6 +84,20 @@ namespace Code_editor.ViewModels
             set => SetProperty(ref _compileStatus, value);
         }
 
+        private int _memoryLimit;
+        public int MemoryLimit
+        {
+            get => _memoryLimit;
+            set => SetProperty(ref _memoryLimit, value);
+        }
+
+        private double _timeLimit;
+        public double TimeLimit
+        {
+            get => _timeLimit;
+            set => SetProperty(ref _timeLimit, value);
+        }
+
         public ICommand SubmitCommand { get; }
         public ICommand ChangeThemeCommand { get; }
 
@@ -91,7 +105,7 @@ namespace Code_editor.ViewModels
         public MainViewModel()
         {
             _httpService = new HttpService(new HttpClient());
-            _requestBody = new RequestBody(string.Empty, string.Empty, 256 * 1024, 5);
+            _requestBody = new RequestBody(string.Empty, string.Empty, 256 * 1024, 5.0);
             SubmitCommand = new RelayCommand(async () => await SubmitCodeAsync());
             ChangeThemeCommand = new RelayCommand(ChangeTheme);
 
@@ -114,10 +128,13 @@ namespace Code_editor.ViewModels
                         _requestBody.MemoryLimit,
                         _requestBody.TimeLimit
                     );
-
+                    
                     OutputResult = await _httpService.GetResultOutput(result.Result.RunStatus.Output);
                     CompileStatus = result.Result.CompileStatus;
+                    SetProperty(ref _timeLimit, result.Result.RunStatus.TimeLimit, nameof(TimeLimit));
+                    SetProperty(ref _memoryLimit, result.Result.RunStatus.MemoryLimit, nameof(MemoryLimit));
                 }
+            
                 else
                 {
                     OutputResult = "Error: No language selected.";

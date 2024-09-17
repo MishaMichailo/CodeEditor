@@ -47,6 +47,12 @@ namespace Code_editor.Models
         [JsonProperty("output")]
         public string Output { get; set; }
 
+        [JsonProperty("time_used")]
+        public double TimeLimit { get; set; }
+
+        [JsonProperty("memory_used")]
+        public int MemoryLimit {  get; set; }
+
         public override string ToString()
         {
             return $"Status: {Status},Output: {Output}";

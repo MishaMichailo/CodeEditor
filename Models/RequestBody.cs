@@ -69,9 +69,9 @@ namespace Code_editor.Models
             }
         }
 
-        private int _timeLimit;
+        private double _timeLimit;
         [JsonProperty("time_limit")]
-        public int TimeLimit
+        public double TimeLimit
         {
             get => _timeLimit;
             set
@@ -115,7 +115,7 @@ namespace Code_editor.Models
         }
 
         // Конструктор для 4 параметрів
-        public RequestBody(string source, string lang, int memoryLimit, int timeLimit)
+        public RequestBody(string source, string lang, int memoryLimit, double timeLimit)
         {
             Source = source;
             Lang = lang;
